@@ -1,11 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
-body {
-  min-height: 100vh;
-}
-
-.bg-spider {
-  background: url("./assets/spider.svg");
+@layer base {
+  body {
+    @apply bg-dairyCream dark:bg-blackPearl text-blackOlive dark:text-colonialWhite;
+  }
 }

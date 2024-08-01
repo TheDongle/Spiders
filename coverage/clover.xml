@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1722435097474" clover="3.2.0">
-  <project timestamp="1722435097474" name="All files">
-    <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="7" coveredelements="7" complexity="0" loc="5" ncloc="5" packages="1" files="1" classes="1"/>
+<coverage generated="1722525538425" clover="3.2.0">
+  <project timestamp="1722525538425" name="All files">
+    <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7" elements="23" coveredelements="23" complexity="0" loc="14" ncloc="14" packages="1" files="2" classes="2"/>
+    <file name="Counter.tsx" path="/home/steven-walker/Documents/Spiders/src/components/Counter.tsx">
+      <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <line num="10" count="30" type="cond" truecount="2" falsecount="0"/>
+      <line num="11" count="28" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="17" count="30" type="stmt"/>
+      <line num="33" count="30" type="stmt"/>
+      <line num="40" count="30" type="stmt"/>
+      <line num="41" count="30" type="stmt"/>
+      <line num="42" count="30" type="stmt"/>
+    </file>
     <file name="Spider.tsx" path="/home/steven-walker/Documents/Spiders/src/components/Spider.tsx">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <line num="4" count="35" type="stmt"/>
-      <line num="5" count="35" type="stmt"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <line num="7" count="35" type="stmt"/>
-      <line num="8" count="35" type="stmt"/>
-      <line num="10" count="35" type="stmt"/>
+      <line num="19" count="35" type="stmt"/>
+      <line num="20" count="35" type="stmt"/>
+      <line num="22" count="35" type="stmt"/>
+      <line num="23" count="35" type="stmt"/>
+      <line num="25" count="35" type="stmt"/>
     </file>
   </project>
 </coverage>
