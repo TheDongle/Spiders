@@ -1,11 +1,11 @@
 import { useState } from "react";
-import SpiderSVG from "../assets/spider";
 
-interface SpiderProps {
+export interface PlayerProps {
+  childrenElement: React.JSX.Element;
   className?: string;
 }
 
-export default function Spider({ className }: SpiderProps) {
+export default function Player({ childrenElement, className }: PlayerProps) {
   const initialState: number = 0;
   const [state, setState] = useState(initialState);
   const style = { transform: `rotate(${state}deg)` };
@@ -17,7 +17,7 @@ export default function Spider({ className }: SpiderProps) {
       className={`align-middle ${className}`}
       onClick={add45}
     >
-      <SpiderSVG className="size-full"></SpiderSVG>
+      {childrenElement}
     </button>
   );
 }
