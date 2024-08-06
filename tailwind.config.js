@@ -4,15 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        blackOlive: "#202E24",
-        forestGreen: "#347A2A",
-        mossGreen: "#B3C87A",
-        dairyCream: "#EBE8BE",
-
-        blackPearl: "#021526",
-        midnightBlue: "#03346E",
-        moonstoneBlue: "#6EACDA",
-        colonialWhite: "#E2E2B6"
+        green: "#019267",
+        teal: "#00C897",
+        orange: "#FFD365",
+        yellow: "#FDFFA9",
+      },
+      rotate: {
+        135: "135deg",
       },
     },
   },

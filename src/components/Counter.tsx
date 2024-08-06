@@ -8,15 +8,13 @@ interface ButtonProps {
 function Button({ onClick, className, disabled }: ButtonProps) {
   let styles;
   if (!disabled) {
-    styles = `bg-mossGreen hover:ring hover:ring-forestGreen
-    active:bg-dairyCream dark:bg-moonstoneBlue
-    dark:hover:ring-colonialWhite`;
+    styles = `active:bg-white`;
   } else {
-    styles = `bg-forestGreen dark:bg-midnightBlue`;
+    styles = `hidden`;
   }
   return (
     <button
-      className={`pointer-events-auto dark:border-midnightBlue ${styles} ${className}`}
+      className={`pointer-events-auto ${styles} ${className}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -34,19 +32,16 @@ function Paragraph({ innerText, className }: ParagraphProps) {
 }
 
 interface CounterProps {
+  className?: string;
   id?: string;
 }
-export default function Counter({ id }: CounterProps) {
+export default function Counter({ id, className }: CounterProps) {
   const [count, setCount] = useState(1);
   const plusOne = () => setCount(Math.min(count + 1, 10));
   return (
-    <div
-      id={id}
-      className="w-fit rounded border-2 border-black text-lg font-semibold
-        dark:border-midnightBlue dark:bg-colonialWhite dark:text-blackPearl"
-    >
+    <div id={id} className={`w-fit rounded text-lg font-semibold ${className}`}>
       <Button
-        className="button inline border-r-2 border-r-black px-2 py-1"
+        className="button inline rounded px-2 py-1"
         onClick={plusOne}
         disabled={count >= 10}
       ></Button>

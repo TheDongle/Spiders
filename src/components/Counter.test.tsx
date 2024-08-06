@@ -24,8 +24,8 @@ describe("Counter", () => {
     counter =
       container.querySelector("#counter") ?? document.createElement("div");
     button =
-      container.querySelector("button") ?? document.createElement("button");
-    paragraph = container.querySelector("p") ?? document.createElement("p");
+      counter.querySelector("button") ?? document.createElement("button");
+    paragraph = counter.querySelector("p") ?? document.createElement("p");
   });
   afterEach(async () => {
     await act(async () => {
