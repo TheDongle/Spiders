@@ -32,9 +32,7 @@ const directions = [
 
 
 export default function ButtonPanel({
-  onClick = () => {
-    0;
-  },
+  onClick = () => 0,
   ...props
 }: ComponentProps<"button">) {
   return (

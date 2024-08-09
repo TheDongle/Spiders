@@ -58,17 +58,40 @@ export default function App() {
     const target = e.target as typeof e.target & {
       innerText: string;
     };
-    if (directionLookup[spiderPosition][target.innerText]) {
-      setDirection(target.innerText);
-      setSpiderPosition(directionLookup[spiderPosition][target.innerText]);
-      setFlyPosition(flyAI());
-      setCount(Math.min(count + 1, 10));
+    if (directionLookup[spiderPosition][target.innerText] !== undefined) {
+      handleState(target.innerText);
     }
   };
 
-  if (flyPosition === spiderPosition) {
-    console.log("You win");
+  function handleState(nextDirection: string) {
+    setDirection(nextDirection);
+    setSpiderPosition(directionLookup[spiderPosition][nextDirection]);
+    setFlyPosition(flyAI());
+    setCount(Math.min(count + 1, 10));
   }
+
+  const Buttons = () => {
+    if (flyPosition === spiderPosition) {
+      return (
+        <div className="end-text">
+          <p>You Win</p>
+        </div>
+      );
+    }
+    if (count >= 10) {
+      return (
+        <div className="end-text">
+          <p>You Lose</p>
+        </div>
+      );
+    }
+    return (
+      <ButtonPanel
+        disabled={count >= 10}
+        onClick={(event) => onClick(event)}
+      ></ButtonPanel>
+    );
+  };
 
   return (
     <div className="mx-auto flex h-[100vh] min-w-min max-w-[42rem] flex-col gap-2 align-middle">
@@ -84,11 +107,8 @@ export default function App() {
         spiderPosition={spiderPosition}
         flyPosition={flyPosition}
       />
-      <div id="controls" className="aspect-[11/3] leading-none">
-        <ButtonPanel
-          disabled={count >= 10}
-          onClick={(event) => onClick(event)}
-        ></ButtonPanel>
+      <div id="controls" className="aspect-[11/3] leading-none md:px-10">
+        <Buttons></Buttons>
         <GameInfo count={count} direction={direction}></GameInfo>
       </div>
       <div
