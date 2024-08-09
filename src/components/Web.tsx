@@ -1,53 +1,6 @@
-import MinusSVG from "../assets/minus";
+import { MinusSVG, BarSVG, SlashSVG, BackSlashSVG } from "../assets/lines";
 import ZeroSVG from "../assets/zero";
-import type { SVGProps } from "react";
-import Player from "./Player";
-import FlySVG from "../assets/fly";
-import SpiderSVG from "../assets/spider";
-
-interface PlayerSpace {
-  space: number;
-}
-
-const Spider = ({ space }: PlayerSpace) => (
-  <Player
-    className="player border-none bg-transparent"
-    key={space}
-    childrenElement={<SpiderSVG />}
-  ></Player>
-);
-
-const Fly = ({ space }: PlayerSpace) => (
-  <Player
-    className="player border-none bg-transparent"
-    key={space}
-    childrenElement={<FlySVG />}
-  ></Player>
-);
-
-const Empty = ({ space }: PlayerSpace) => (
-  <ZeroSVG className="zero size-full" key={space} />
-);
-
-const BackSlashSVG = ({ className }: SVGProps<string>) => (
-  <MinusSVG className={`rotate-45 ${className}`} />
-);
-const SlashSVG = ({ className }: SVGProps<string>) => (
-  <MinusSVG className={`rotate-135 ${className}`} />
-);
-const BarSVG = ({ className }: SVGProps<string>) => (
-  <MinusSVG className={`rotate-90 ${className}`} />
-);
-
-interface CellProps {
-  className?: string;
-  spaceNumber?: number;
-  children?: React.ReactNode;
-}
-
-function Cell({ className, children }: CellProps) {
-  return <div className={className}>{children}</div>;
-}
+import { Fly, Spider } from "./Players";
 
 const blueprint = String.raw`/ - - O - O - O - O
 / | | | |
@@ -65,6 +18,7 @@ interface WebProps {
   spiderPosition: number;
 }
 
+
 export default function Web({
   className,
   spiderPosition,
@@ -77,23 +31,24 @@ export default function Web({
 
   const playerSpaces = emptyBoard.map((_, i) => {
     if (i === spiderPosition) {
-      return <Spider space={i} />;
+      return <Spider />;
     }
     if (i === flyPosition) {
-      return <Fly space={i} />;
+      return <Fly />;
     }
-    return <Empty space={i}></Empty>;
+    return <ZeroSVG></ZeroSVG>;
   });
 
   const insert = (row: number, i: number, Element?: any, barIndex?: number) => {
     let gridColumn = barIndex !== undefined ? barNumbers[barIndex] : "auto";
     web.push(
-      <Cell
-        className={`cell size-fit row-${row} col-start-${gridColumn}`}
+      <div
+        style={{ gridColumn: `${gridColumn}`, gridRowStart: `${row}` }}
+        className="cell"
         key={i}
       >
         {Element}
-      </Cell>,
+      </div>,
     );
   };
 
@@ -104,33 +59,29 @@ export default function Web({
     const char = blueprint.charAt(i);
     switch (char) {
       case `/`:
-        insert(row, i, <SlashSVG className="slash size-full" key={i} />);
+        insert(row, i, <SlashSVG className="slash" key={i} />);
         break;
       case " ":
         insert(
           row,
           i,
-          <div className="blank size-full" key={i}>
+          <div className="blank" key={i}>
             {" "}
           </div>,
         );
         break;
       case "-":
-        insert(row, i, <MinusSVG className="minus size-full" key={i} />);
+        insert(row, i, <MinusSVG className="minus" key={i} />);
         break;
       case `O`:
         insert(row, i, playerSpaces[spaces]);
         ++spaces;
         break;
       case "\\":
-        insert(
-          row,
-          i,
-          <BackSlashSVG className="backslash size-full" key={i} />,
-        );
+        insert(row, i, <BackSlashSVG className="backslash" key={i} />);
         break;
       case "|":
-        insert(row, i, <BarSVG className="bar size-full" key={i} />, barIndex);
+        insert(row, i, <BarSVG className="bar" key={i} />, barIndex);
         ++barIndex;
         break;
       default:
@@ -142,9 +93,5 @@ export default function Web({
         }
     }
   }
-  return (
-    <div className={`web-grid ${className}`}>
-      {web}
-    </div>
-  );
+  return <div className={`web-grid ${className}`}>{web}</div>;
 }

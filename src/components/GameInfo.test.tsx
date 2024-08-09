@@ -4,7 +4,7 @@
 
 import { act } from "react";
 import ReactDOM from "react-dom/client";
-import Counter from "./Counter";
+import Counter from "./GameInfo";
 
 describe("Counter", () => {
   let container: HTMLDivElement,
